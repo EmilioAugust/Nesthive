@@ -96,18 +96,6 @@ const Login = () => {
       <Toaster position="top-right" />
       
       <div className="container" style={{ maxWidth: '500px', width: '100%' }}>
-        <div className="logo" style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <div className="logo-icon" style={{
-            width: '60px',
-            height: '60px',
-            background: 'linear-gradient(135deg, #6c7bff, #8e7bff)',
-            borderRadius: '16px',
-            margin: '0 auto 16px'
-          }}></div>
-          <h1 style={{ color: 'white', fontSize: '32px', marginBottom: '8px' }}>LinkNest</h1>
-          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '14px' }}>Bookmark Manager</p>
-        </div>
-
         <div className="card" style={{
           background: 'white',
           borderRadius: '24px',
