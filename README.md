@@ -52,7 +52,9 @@ cp .env.example .env
 ```bash
 # First time build and start
 docker-compose up --build
-# or
+```
+or
+```bash
 # Start in background
 docker-compose up -d --build
 ```
