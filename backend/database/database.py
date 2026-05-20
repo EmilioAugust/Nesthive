@@ -6,7 +6,7 @@ from environs import Env
 
 env = Env()
 env.read_env(".env")
-url_database = env("URL_DB")
+url_database = env("DATABASE_URL")
 
 engine = create_engine(url_database)
 Base = declarative_base()
