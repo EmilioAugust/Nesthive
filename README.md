@@ -1,6 +1,10 @@
 # 📂 Nesthive (Bookmark Manager)
 
+<<<<<<< HEAD
 **Nesthive** is a backend web application for saving, organizing, and managing your favorite links.  
+=======
+**Nesthive** is a web application for saving, organizing, and managing your favorite links.  
+>>>>>>> 8c3df75b358a22f5f49db45a7cd9879264e1c5de
 Built with **FastAPI**, **SQLAlchemy**, and **JWT authentication**, it allows users to create collections, tag bookmarks, and search through them easily.
 
 ---
@@ -24,6 +28,7 @@ Built with **FastAPI**, **SQLAlchemy**, and **JWT authentication**, it allows us
 
 ---
 
+<<<<<<< HEAD
 ## Requirements
 
 ### For Docker setup:
@@ -63,6 +68,12 @@ docker-compose up -d --build
 - Backend API: http://localhost:8000/docs
 
 ---
+=======
+## Quick Start
+```bash
+working on it...
+```
+>>>>>>> 8c3df75b358a22f5f49db45a7cd9879264e1c5de
 
 ## 📄 License
 MIT License — feel free to use and modify.
