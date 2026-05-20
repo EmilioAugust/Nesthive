@@ -1,3 +1,6 @@
+[![lang en](https://img.shields.io/badge/lang-en-red)](https://github.com/EmilioAugust/Nesthive)
+[![lang ru](https://img.shields.io/badge/lang-ru-blue)](https://github.com/EmilioAugust/Nesthive/blob/main/README.ru.md)
+
 # 📂 Nesthive (Менеджер закладок)
 
 **Nesthive** — это веб-приложение для сохранения, организации и управления вашими любимыми ссылками.  
