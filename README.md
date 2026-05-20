@@ -1,6 +1,6 @@
 # 📂 Nesthive (Bookmark Manager)
 
-**Nesthive** is a backend web application for saving, organizing, and managing your favorite links.  
+**Nesthive** is a web application for saving, organizing, and managing your favorite links.  
 Built with **FastAPI**, **SQLAlchemy**, and **JWT authentication**, it allows users to create collections, tag bookmarks, and search through them easily.
 
 ---
