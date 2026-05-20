@@ -30,11 +30,6 @@ Built with **FastAPI**, **SQLAlchemy**, and **JWT authentication**, it allows us
 - Docker Desktop (Windows/Mac) or Docker Engine (Linux)
 - Docker Compose v2
 
-### For manual setup:
-- Python 3.12+
-- Node.js 20+
-- PostgreSQL
-
 ---
 
 ## 🐳 Running with Docker
