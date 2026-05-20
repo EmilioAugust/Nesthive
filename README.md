@@ -1,3 +1,6 @@
+[![lang ru](https://img.shields.io/badge/lang-ru-blue)](https://github.com/EmilioAugust/Collector/blob/main/README.ru.md)
+[![lang en](https://img.shields.io/badge/lang-en-red)](https://github.com/EmilioAugust/Collector/blob/main/README.md)
+
 # 📂 Nesthive (Bookmark Manager)
 
 **Nesthive** is a web application for saving, organizing, and managing your favorite links.  
