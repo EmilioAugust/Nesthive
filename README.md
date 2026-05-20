@@ -1,5 +1,5 @@
-[![lang ru](https://img.shields.io/badge/lang-ru-blue)](https://github.com/EmilioAugust/Collector/blob/main/README.ru.md)
-[![lang en](https://img.shields.io/badge/lang-en-red)](https://github.com/EmilioAugust/Collector/blob/main/README.md)
+[![lang ru](https://img.shields.io/badge/lang-ru-blue)](https://github.com/EmilioAugust/Nesthive/blob/main/README.ru.md)
+[![lang en](https://img.shields.io/badge/lang-en-red)](https://github.com/EmilioAugust/Nesthive)
 
 # 📂 Nesthive (Bookmark Manager)
 
@@ -52,7 +52,9 @@ cp .env.example .env
 ```bash
 # First time build and start
 docker-compose up --build
-# or
+```
+or
+```bash
 # Start in background
 docker-compose up -d --build
 ```
