@@ -22,10 +22,18 @@ const Dashboard = () => {
   const [editingBookmark, setEditingBookmark] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  // Загрузка данных
   const loadBookmarks = async () => {
     try {
       const data = await bookmarksAPI.getAll()
+      
+      // Проверяем что data существует и это массив
+      if (!data || !Array.isArray(data)) {
+        console.warn('No bookmarks data or invalid format:', data)
+        setBookmarks([])
+        setAllTags([])
+        return []
+      }
+      
       const processedBookmarks = data.map(bookmark => ({
         id: bookmark.id,
         title: bookmark.title || 'Untitled',
@@ -36,6 +44,7 @@ const Dashboard = () => {
         created_at: bookmark.created_at || new Date().toISOString(),
         icon_url: bookmark.icon_url || null
       }))
+      
       setBookmarks(processedBookmarks)
       
       // Сбор уникальных тегов
@@ -54,7 +63,12 @@ const Dashboard = () => {
       return processedBookmarks
     } catch (error) {
       console.error('Error loading bookmarks:', error)
-      toast.error('Failed to load bookmarks')
+      // Не показываем ошибку пользователю при первой загрузке если просто нет закладок
+      if (error.response?.status !== 404) {
+        toast.error('Failed to load bookmarks')
+      }
+      setBookmarks([])
+      setAllTags([])
       return []
     }
   }
@@ -78,7 +92,6 @@ const Dashboard = () => {
     init()
   }, [])
 
-  // Фильтрация и сортировка
   useEffect(() => {
     let filtered = [...bookmarks]
     
@@ -96,7 +109,6 @@ const Dashboard = () => {
     setFilteredBookmarks(filtered)
   }, [bookmarks, currentFilter, currentSort, showFavoritesOnly])
 
-  // Обработчики
   const handleSearch = async (query) => {
     if (query.length === 0) {
       await loadBookmarks()
@@ -136,7 +148,7 @@ const Dashboard = () => {
     try {
       await bookmarksAPI.update(id, bookmarkData)
       toast.success('Bookmark updated successfully!')
-      await loadBookmarks() // Перезагружаем - иконка обновится автоматически
+      await loadBookmarks()
       return true
     } catch (error) {
       console.error('Update error:', error)
@@ -150,7 +162,24 @@ const Dashboard = () => {
       try {
         await bookmarksAPI.delete(id)
         toast.success('Bookmark deleted successfully!')
-        await loadBookmarks()
+        
+        // Обновляем состояние локально, без перезагрузки всех закладок
+        setBookmarks(prevBookmarks => {
+          const newBookmarks = prevBookmarks.filter(b => b.id !== id)
+          // Обновляем теги
+          const tags = new Set()
+          newBookmarks.forEach(bookmark => {
+            if (bookmark.tags && Array.isArray(bookmark.tags)) {
+              bookmark.tags.forEach(tag => {
+                if (tag && typeof tag === 'string' && tag !== '') {
+                  tags.add(tag.toLowerCase())
+                }
+              })
+            }
+          })
+          setAllTags(Array.from(tags).sort())
+          return newBookmarks
+        })
       } catch (error) {
         console.error('Delete error:', error)
         toast.error('Failed to delete bookmark')
@@ -161,13 +190,24 @@ const Dashboard = () => {
   const handleToggleFavorite = async (id) => {
     const bookmark = bookmarks.find(b => b.id === id)
     if (bookmark) {
-      await handleUpdateBookmark(id, {
-        url: bookmark.url,
-        title: bookmark.title,
-        description: bookmark.description,
-        tags: bookmark.tags,
-        favorite: !bookmark.favorite
-      })
+      try {
+        await handleUpdateBookmark(id, {
+          url: bookmark.url,
+          title: bookmark.title,
+          description: bookmark.description,
+          tags: bookmark.tags,
+          favorite: !bookmark.favorite
+        })
+        // Локальное обновление без перезагрузки
+        setBookmarks(prevBookmarks => 
+          prevBookmarks.map(b => 
+            b.id === id ? { ...b, favorite: !b.favorite } : b
+          )
+        )
+      } catch (error) {
+        console.error('Toggle favorite error:', error)
+        toast.error('Failed to update favorite status')
+      }
     }
   }
 

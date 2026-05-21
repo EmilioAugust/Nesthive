@@ -30,7 +30,6 @@ const Login = () => {
       localStorage.setItem('access_token', data.access_token)
       toast.success('Login successful! Redirecting...')
       
-      // Принудительный редирект через замену текущего URL
       setTimeout(() => {
         window.location.href = '/'
       }, 500)

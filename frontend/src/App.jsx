@@ -4,7 +4,7 @@ import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(null) // null = загрузка
+  const [isAuthenticated, setIsAuthenticated] = useState(null)
 
   useEffect(() => {
     const token = localStorage.getItem('access_token')
